@@ -36,31 +36,39 @@
     </table>
 
     <script>
-        $(document).ready(function() {
-            const links = [
-                { name: "Wellfound", url: "https://wellfound.co", description: "آگهی‌های انتخاب شده برای توسعه‌دهندگان." },
-                { name: "Upwork", url: "https://upwork.com", description: "یافتن فریلنسرها و آگهی‌های فریلنسری." },
-                { name: "Fiverr", url: "https://fiverr.com", description: "بازار خدمات دیجیتال." },
-                { name: "Designhill", url: "https://designhill.com", description: "انجام کارهای طراحی شما." },
-                { name: "Toptal Business", url: "https://toptal.com/business", description: "استخدام مشاوران و کارشناسان برتر کسب و کار." },
-                { name: "Freelancer", url: "https://freelancer.com", description: "استخدام فریلنسرها و یافتن آگهی‌های فریلنسری آنلاین." },
-                { name: "FreelancerMap", url: "https://freelancermap.com", description: "یافتن فریلنسرها و متخصصان IT برای پروژه‌های شما." },
-                { name: "Gun", url: "https://gun.io", description: "شبکه برتر برای توسعه‌دهندگان نرم‌افزار برتر." },
-                { name: "Behance", url: "https://behance.net", description: "پلتفرم آنلاین برای نمایش و کشف کارهای خلاقانه." }
-            ];
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = [
+            { name: "Wellfound", url: "https://wellfound.co", description: "آگهی‌های انتخاب شده برای توسعه‌دهندگان." },
+            { name: "Upwork", url: "https://upwork.com", description: "یافتن فریلنسرها و آگهی‌های فریلنسری." },
+            { name: "Fiverr", url: "https://fiverr.com", description: "بازار خدمات دیجیتال." },
+            { name: "Designhill", url: "https://designhill.com", description: "انجام کارهای طراحی شما." }
+            // مورد‌های دیگر را اضافه کنید اگر نیاز باشد
+        ];
 
-            const linksList = $('#links-list tbody');
+        const linksList = document.getElementById('links-list').getElementsByTagName('tbody')[0];
 
-            links.forEach(link => {
-                linksList.append(
-                    <tr>
-                        <td><a href="${link.url}" target="_blank">${link.name}</a></td>
-                        <td>${link.url}</td>
-                        <td>${link.description}</td>
-                    </tr>
-                );
-            });
+        links.forEach(link => {
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+            const urlCell = document.createElement('td');
+            const descriptionCell = document.createElement('td');
+
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', link.url);
+            linkElement.setAttribute('target', '_blank');
+            linkElement.innerText = link.name;
+
+            nameCell.appendChild(linkElement);
+            urlCell.innerText = link.url;
+            descriptionCell.innerText = link.description;
+
+            row.appendChild(nameCell);
+            row.appendChild(urlCell);
+            row.appendChild(descriptionCell);
+
+            linksList.appendChild(row);
         });
-    </script>
+    });
+</script>
 </body>
 </html>
